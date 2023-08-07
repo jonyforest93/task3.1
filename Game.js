@@ -21,14 +21,15 @@ class Game {
         console.log('Choose your move:');
         this.showMenu();
         let playerMove = this.getValidInput();
-        while (playerMove === 'error') {
-            this.showMenu();
-            playerMove = this.getValidInput();
-        }
+
         if (playerMove === -1) {
             return
         } else if (playerMove === 'help') {
             this.showHelp();
+            playerMove = this.getValidInput();
+        }
+        while (playerMove === 'error') {
+            this.showMenu();
             playerMove = this.getValidInput();
         }
             let winner = new RulesTable(this.params, playerMove, computerMove);
