@@ -2,7 +2,7 @@ const victoryCondition = require('./victoryCondition');
 class Help {
     constructor(params) {
         this.params = params;
-        this.help = this.printTable();
+        this.help = this.printTable;
     }
 
     getLongestParam(array) {
@@ -35,7 +35,7 @@ class Help {
 
     getAllStringLength(param) {
         let result = 0;
-        param.forEach(el => {
+        param.forEach(() => {
             result += this.calcRowLength();
         })
         result += this.calcRowLength();

@@ -21,13 +21,14 @@ class Game {
         console.log('Choose your move:');
         this.showMenu();
         let playerMove = this.getValidInput();
-        while (playerMove === 'help') {
-            this.showHelp();
+        while (playerMove === 'error') {
             this.showMenu();
             playerMove = this.getValidInput();
         }
-        if (playerMove == -1) {
+        if (playerMove === -1) {
             return
+        } else if (playerMove === 'help') {
+            this.showHelp();
         }
             let winner = new RulesTable(this.params, playerMove, computerMove);
             console.log(winner.winner);
@@ -37,13 +38,13 @@ class Game {
     getComputerTurn () {
         const array = this.params;
         const randomElement = lodash.sample(array);
-        const index = array.indexOf(randomElement);
-        return index;
+        return array.indexOf(randomElement);
     }
 
     showHelp() {
         console.log('this table shows the options for the user to win against the computer');
-        const help = new Help(this.params).help;
+        const help = new Help(this.params);
+        help.help();
     }
 
     showMenu() {
@@ -60,7 +61,7 @@ class Game {
             return parseInt(input) - 1;
         } else if (input === 'help') {
             return 'help';
-        }
+        } else return 'error'
     }
 }
 
