@@ -29,6 +29,7 @@ class Game {
             return
         } else if (playerMove === 'help') {
             this.showHelp();
+            playerMove = this.getValidInput();
         }
             let winner = new RulesTable(this.params, playerMove, computerMove);
             console.log(winner.winner);
